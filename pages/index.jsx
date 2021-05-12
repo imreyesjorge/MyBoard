@@ -1,9 +1,10 @@
 import Layout from "../src/components/Layout";
+import Nav from "../src/components/Nav";
 
 const index = () => {
   return (
     <Layout>
-      <p>Testing</p>
+      <Nav />
     </Layout>
   );
 };
