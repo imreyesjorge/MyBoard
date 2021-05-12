@@ -1,8 +1,10 @@
+import Layout from "../src/components/Layout";
+
 const index = () => {
   return (
-    <div>
-      <p className="text-green-600">App Successfully Connected!</p>
-    </div>
+    <Layout>
+      <p>Testing</p>
+    </Layout>
   );
 };
 
