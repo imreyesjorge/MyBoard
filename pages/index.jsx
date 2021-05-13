@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import Layout from "../src/components/Layout";
 import Nav from "../src/components/Nav";
+import Container from "../src/components/Container";
 
 const index = () => {
   const [tag, setTag] = useState("");
@@ -9,6 +10,7 @@ const index = () => {
   return (
     <Layout>
       <Nav searched={tag} setSearched={setTag} />
+      <Container></Container>
     </Layout>
   );
 };
