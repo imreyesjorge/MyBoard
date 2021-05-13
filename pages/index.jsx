@@ -7,29 +7,39 @@ import Card from "../src/components/Card";
 
 const Cards = [
   {
-    title: "First Note",
-    body: "This is the body of this note, is a short one.",
+    title: "Et in aut enim",
+    body: "Et voluptatibus autem quia cum incidunt. Et ipsa cum qui. Qui minus laudantium minus nihil ad doloremque.",
     tag: "misc",
   },
   {
-    title: "Second Note",
-    body: "This is the body of this note, is a short one.",
+    title: "Omnis quod atque",
+    body: "Possimus temporibus hic nobis molestiae vel consequatur doloribus sapiente.",
     tag: "misc",
   },
   {
-    title: "Third Note",
-    body: "This is the body of this note, is a short one.",
+    title: "Et in aut enim",
+    body: "Iste enim magnam blanditiis magni omnis quos.",
     tag: "misc",
   },
   {
-    title: "First day in school",
-    body: "This is the body of this note, is a short one.",
+    title: "Inventore et dolores",
+    body: "Nobis aut laborum sequi dolor non. Recusandae minima non autem et. Quo praesentium aut autem.",
     tag: "school",
   },
   {
-    title: "First Note",
-    body: "This is the body of this note, is a short one.",
+    title: "Omnis quod atque",
+    body: "Recusandae aspernatur nobis qui soluta. ",
     tag: "misc",
+  },
+  {
+    title: "Corrupti non qui ",
+    body: "Corporis labore et soluta aut eos. Et in aut enim. Esse fuga doloremque rerum.",
+    tag: "javascript",
+  },
+  {
+    title: " Corporis labore et ",
+    body: "Quaerat vel doloribus cum ratione incidunt iure cumque. Inventore et dolores placeat laborum et. ",
+    tag: "school",
   },
 ];
 
@@ -41,7 +51,11 @@ const index = () => {
       <Nav searched={tag} setSearched={setTag} />
       <Container>
         {Cards.map((item) => {
-          return <Card title={item.title} body={item.body} tag={item.tag} />;
+          return item.tag
+            .toLocaleLowerCase()
+            .includes(tag.toLocaleLowerCase()) ? (
+            <Card title={item.title} body={item.body} tag={item.tag} />
+          ) : null;
         })}
       </Container>
     </Layout>
