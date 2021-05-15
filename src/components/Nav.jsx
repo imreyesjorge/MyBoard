@@ -1,8 +1,19 @@
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 
 const Nav = ({ searched, setSearched }) => {
+  const input = useRef();
+
   const handleChange = (event) => {
     setSearched(event.target.value);
+  };
+
+  const inputSelectEvent = () => {
+    input.current.classList.add("border-white");
+  };
+
+  const inputLeaveEvent = () => {
+    input.current.classList.remove("border-white");
   };
 
   return (
@@ -12,13 +23,18 @@ const Nav = ({ searched, setSearched }) => {
         <h3 className="text-lg ml-4">WorkspaceName</h3>
       </div>
       <div className="flex justify-center items-center">
-        <div className="flex mr-6 p-2 px-3 items-center justify-center bg-backalt rounded-lg">
+        <div
+          className="flex mr-6 p-2 px-3 items-center justify-center bg-backalt rounded-lg border border-transparent transition"
+          ref={input}
+        >
           <input
             type="text"
             placeholder="Search by Tag-name"
             value={searched}
             onChange={handleChange}
             className="font-semibold bg-transparent"
+            onFocus={inputSelectEvent}
+            onBlur={inputLeaveEvent}
           />
           <Image src="/svgs/Search.svg" width={25} height={25} />
         </div>
