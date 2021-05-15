@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { nanoid } from "nanoid";
 
 import Layout from "../src/components/Layout";
 import Nav from "../src/components/Nav";
@@ -54,7 +55,12 @@ const index = () => {
           return item.tag
             .toLocaleLowerCase()
             .includes(tag.toLocaleLowerCase()) ? (
-            <Card title={item.title} body={item.body} tag={item.tag} />
+            <Card
+              title={item.title}
+              body={item.body}
+              tag={item.tag}
+              key={nanoid()}
+            />
           ) : null;
         })}
       </Container>
