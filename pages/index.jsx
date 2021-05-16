@@ -54,7 +54,8 @@ const index = () => {
         {Cards.map((item) => {
           return item.tag
             .toLocaleLowerCase()
-            .includes(tag.toLocaleLowerCase()) ? (
+            .includes(tag.toLocaleLowerCase()) ||
+            item.title.toLocaleLowerCase().includes(tag.toLocaleLowerCase()) ? (
             <Card
               title={item.title}
               body={item.body}

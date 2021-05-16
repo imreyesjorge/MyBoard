@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 
 const Nav = ({ searched, setSearched }) => {
@@ -20,7 +20,7 @@ const Nav = ({ searched, setSearched }) => {
     <nav className="w-full p-8 flex justify-between items-center">
       <div className="flex justify-center items-center">
         <Image src="/svgs/logo.svg" width={40} height={40} />
-        <h3 className="text-lg ml-4">WorkspaceName</h3>
+        <h3 className="text-lg ml-4">Workspace</h3>
       </div>
       <div className="flex justify-center items-center">
         <div
@@ -29,7 +29,7 @@ const Nav = ({ searched, setSearched }) => {
         >
           <input
             type="text"
-            placeholder="Search by Tag-name"
+            placeholder="Search by Title or Tag"
             value={searched}
             onChange={handleChange}
             className="font-semibold bg-transparent"
