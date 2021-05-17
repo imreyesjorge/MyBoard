@@ -1,6 +1,40 @@
+import { data } from "autoprefixer";
+import { useRef } from "react";
+
 const Modal = ({ modalState, setModalState }) => {
+  const titleElement = useRef();
+  const bodyElement = useRef();
+
   const handleModal = () => {
     setModalState(!modalState);
+  };
+
+  const handleNoteCreation = () => {
+    // Close the Modal on Click
+    handleModal();
+
+    // Create the Note Object
+    const newNote = {
+      title: titleElement.current.value,
+      body: bodyElement.current.value,
+    };
+
+    // Check if there's any note
+    localStorage.getItem("data") == null
+      ? localStorage.setItem("data", JSON.stringify({ notes: [] }))
+      : null;
+
+    // Get the notes object
+    let data = JSON.parse(localStorage.getItem("data"));
+
+    // Add the new Note
+    data.notes.push(newNote);
+
+    console.log(data);
+  };
+
+  const handleKeyDown = (event) => {
+    console.log(event);
   };
 
   return (
@@ -11,11 +45,13 @@ const Modal = ({ modalState, setModalState }) => {
             type="text"
             className="text-2xl font-bold text-white focus:text-primary w-full mb-6 p-2 bg-transparent border-b border-backalt focus:border-primary outline-none transition"
             placeholder="A brief title"
+            ref={titleElement}
           />
           <textarea
             cols="30"
             rows="8"
             className="w-full p-4 rounded bg-backsoft resize-none outline-none"
+            ref={bodyElement}
           />
           <div className="w-full mt-4 flex justify-end">
             <button
@@ -28,7 +64,7 @@ const Modal = ({ modalState, setModalState }) => {
             <button
               type="submit"
               className="font-bold p-2 bg-green-500 rounded-lg"
-              onClick={handleModal}
+              onClick={handleNoteCreation}
             >
               Create
             </button>
