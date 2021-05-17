@@ -1,8 +1,12 @@
 import { useRef } from "react";
 import Image from "next/image";
 
-const Nav = ({ searched, setSearched }) => {
+const Nav = ({ searched, setSearched, modalState, setModalState }) => {
   const input = useRef();
+
+  const handleModal = () => {
+    setModalState(!modalState);
+  };
 
   const handleChange = (event) => {
     setSearched(event.target.value);
@@ -39,7 +43,12 @@ const Nav = ({ searched, setSearched }) => {
           <Image src="/svgs/Search.svg" width={25} height={25} />
         </div>
         <div className="flex items-center justify-center cursor-pointer">
-          <Image src="/svgs/Edit Square.svg" width={40} height={40} />
+          <Image
+            src="/svgs/Edit Square.svg"
+            width={40}
+            height={40}
+            onClick={handleModal}
+          />
         </div>
       </div>
     </nav>

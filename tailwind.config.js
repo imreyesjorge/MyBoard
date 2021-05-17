@@ -8,6 +8,7 @@ module.exports = {
         primaryLow: "#6C5DD322",
         background: "#1E1C21",
         backalt: "#322F35",
+        backsoft: "#211f23",
       },
     },
   },

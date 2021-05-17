@@ -5,6 +5,7 @@ import Layout from "../src/components/Layout";
 import Nav from "../src/components/Nav";
 import Container from "../src/components/Container";
 import Card from "../src/components/Card";
+import Modal from "../src/components/Modal";
 
 const Cards = [
   {
@@ -46,10 +47,16 @@ const Cards = [
 
 const index = () => {
   const [tag, setTag] = useState("");
+  const [isModal, setIsModal] = useState(false);
 
   return (
     <Layout>
-      <Nav searched={tag} setSearched={setTag} />
+      <Nav
+        searched={tag}
+        setSearched={setTag}
+        setModalState={setIsModal}
+        modalState={isModal}
+      />
       <Container>
         {Cards.map((item) => {
           return item.tag
@@ -65,6 +72,9 @@ const index = () => {
           ) : null;
         })}
       </Container>
+      {isModal ? (
+        <Modal modalState={isModal} setModalState={setIsModal} />
+      ) : null}
     </Layout>
   );
 };
