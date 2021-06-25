@@ -1,7 +1,6 @@
-import { data } from "autoprefixer";
 import { useRef } from "react";
 
-const Modal = ({ modalState, setModalState }) => {
+const Modal = ({ modalState, setModalState, setFetchedNotes, fetchedNotes }) => {
   const titleElement = useRef();
   const bodyElement = useRef();
 
@@ -17,6 +16,7 @@ const Modal = ({ modalState, setModalState }) => {
     const newNote = {
       title: titleElement.current.value,
       body: bodyElement.current.value,
+      tag: "general",
     };
 
     // Check if there's any note
@@ -30,7 +30,13 @@ const Modal = ({ modalState, setModalState }) => {
     // Add the new Note
     data.notes.push(newNote);
 
-    console.log(data);
+    // Save the new note to localStorage
+    localStorage.setItem("data", JSON.stringify(data));
+
+    // Update the current app state
+    let response = fetchedNotes;
+    response ? response.notes.push(newNote) : response = { notes: [newNote]}
+    setFetchedNotes(response)
   };
 
   const handleKeyDown = (event) => {

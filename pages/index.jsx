@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 
 import Layout from "../src/components/Layout";
@@ -36,7 +36,7 @@ const Cards = [
   {
     title: "Corrupti non qui ",
     body: "Corporis labore et soluta aut eos. Et in aut enim. Esse fuga doloremque rerum.",
-    tag: "javascript",
+    tag : "testing"
   },
   {
     title: " Corporis labore et ",
@@ -48,6 +48,19 @@ const Cards = [
 const index = () => {
   const [tag, setTag] = useState("");
   const [isModal, setIsModal] = useState(false);
+  const [fetchedNotes, setFetchedNotes] = useState(null);
+
+  const fetchLocalNotes = () => {
+    // See if there's any note in localStorage and return-in
+    const response = JSON.parse(localStorage.getItem("data"));
+  
+    // Update the state
+    setFetchedNotes(response);
+  }
+
+  useEffect(() => {
+    fetchLocalNotes();
+  }, []);
 
   return (
     <Layout>
@@ -58,7 +71,7 @@ const index = () => {
         modalState={isModal}
       />
       <Container>
-        {Cards.map((item) => {
+        {fetchedNotes ? fetchedNotes.notes.map((item) => {
           return item.tag
             .toLocaleLowerCase()
             .includes(tag.toLocaleLowerCase()) ||
@@ -70,10 +83,10 @@ const index = () => {
               key={nanoid()}
             />
           ) : null;
-        })}
+        }) : null}
       </Container>
       {isModal ? (
-        <Modal modalState={isModal} setModalState={setIsModal} />
+        <Modal modalState={isModal} setModalState={setIsModal} setFetchedNotes={setFetchedNotes} fetchedNotes={fetchedNotes} />
       ) : null}
     </Layout>
   );

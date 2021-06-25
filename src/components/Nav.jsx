@@ -36,7 +36,7 @@ const Nav = ({ searched, setSearched, modalState, setModalState }) => {
             placeholder="Search by Title or Tag"
             value={searched}
             onChange={handleChange}
-            className="font-semibold bg-transparent"
+            className="font-semibold bg-transparent outline-none"
             onFocus={inputSelectEvent}
             onBlur={inputLeaveEvent}
           />
